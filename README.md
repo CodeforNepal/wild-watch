@@ -1,4 +1,4 @@
-#Wild Watch: Early Animal Detection for Ultimate Protection
+# Wild Watch: Early Animal Detection for Ultimate Protection
 ----------------------------------------------------------------------------
 ### By team - **Team Incognito**
 >**Overview**
