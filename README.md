@@ -1,2 +1,11 @@
-# wild-watch
-This project aims to boost safety along Nepal's wildlife habitats bordering human settlements using object detection technique. It spots dangerous animals and alerts authorities or nearby communities for swift action, focusing on areas near national parks, wildlife reserves, and forests.
+#Wild Watch: Early Animal Detection for Ultimate Protection
+----------------------------------------------------------------------------
+### By team - **Team Incognito**
+>Overview
+Welcome to Team Incognito's repository for the "Wild Watch" project. Our team has developed a model using YOLO-v5 for early animal detection to prevent human-wildlife conflicts.
+Getting Started
+Clone the repository.
+Install dependencies.
+Train the model.
+Evaluate its performance.
+Run inference on new data.
