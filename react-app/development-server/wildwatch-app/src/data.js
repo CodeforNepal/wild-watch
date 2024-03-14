@@ -10,7 +10,7 @@ import {
 import nabin from "./images/nabin.webp";
 import sudeep from "./images/sudeep.jpg";
 import sanket from "./images/sanket.jpg";
-import shankar from "./images/shankar.jpg";
+import shankar from "./images/shankar.webp";
 import bses from "./images/bses.jpg";
 import abhash from "./images/abhash.webp";
 

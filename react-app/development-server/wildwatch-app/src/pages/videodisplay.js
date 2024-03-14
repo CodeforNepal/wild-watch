@@ -1,11 +1,8 @@
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-
 import React, { useState, useEffect } from "react";
 
 const VideoStream = () => {
   const [outputData, setOutputData] = useState([]);
-  const [confidenceThreshold, setConfidenceThreshold] = useState(0.5);
-  const [scaleFactor, setScaleFactor] = useState(1.0);
   const [isPaused, setIsPaused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -39,14 +36,6 @@ const VideoStream = () => {
 
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [isPaused]);
-
-  const handleParameterChange = (parameter, value) => {
-    if (parameter === "confidenceThreshold") {
-      setConfidenceThreshold(value);
-    } else if (parameter === "scaleFactor") {
-      setScaleFactor(value);
-    }
-  };
 
   const togglePause = () => {
     setIsPaused((prevPaused) => !prevPaused);
@@ -86,48 +75,6 @@ const VideoStream = () => {
                 className="w-full h-auto rounded-md shadow-md"
               />
               <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Confidence Threshold
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  value={confidenceThreshold}
-                  onChange={(e) =>
-                    handleParameterChange(
-                      "confidenceThreshold",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                  className="w-full mt-2 range-input"
-                />
-                <span className="text-gray-700">
-                  {confidenceThreshold.toFixed(2)}
-                </span>
-              </div>
-              <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Scale Factor
-                </label>
-                <input
-                  type="range"
-                  min="0.1"
-                  max="2"
-                  step="0.1"
-                  value={scaleFactor}
-                  onChange={(e) =>
-                    handleParameterChange(
-                      "scaleFactor",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                  className="w-full mt-2 range-input"
-                />
-                <span className="text-gray-700">{scaleFactor.toFixed(1)}</span>
-              </div>
-              <div className="mt-4">
                 <button
                   onClick={togglePause}
                   className="bg-[#333333] hover:bg-gray-800 text-white font-bold py-2 px-4 rounded"
@@ -153,8 +100,12 @@ const VideoStream = () => {
           ) : (
             <ul>
               {outputData.map((animal, index) => (
-                <li key={index} className="red-background animate-blink">
-                  <HiOutlineExclamationCircle className="text-red-500 inline-block align-middle mr-2" />{" "}
+                <li
+                  key={index}
+                  className="red-background animate-blink"
+                  style={{ color: "white", fontSize: "1.2rem" }}
+                >
+                  <HiOutlineExclamationCircle className="text-white-500 inline-block align-middle mr-2" />{" "}
                   {animal}
                 </li>
               ))}

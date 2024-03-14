@@ -47,7 +47,7 @@ def generate_frames(process_every_nth_frame=10):
                 last_processed_frame = frame
 
                 print(detected_animal_names_list)
-                send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
+                #send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
 
                 ret, jpeg = cv2.imencode('.jpg', last_processed_frame)
                 jpeg_buffer = jpeg.tobytes()
@@ -56,7 +56,7 @@ def generate_frames(process_every_nth_frame=10):
 
             else:
                 if last_processed_frame is not None:
-                    send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
+                    #send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
                     ret, jpeg = cv2.imencode('.jpg', last_processed_frame)
                     jpeg_buffer = jpeg.tobytes()
                     yield (b'--frame\r\n'
