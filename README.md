@@ -20,7 +20,7 @@ python server.py
 
 Certain parameters in the server.py file can be changed to customize the system's behavior:
 
-- `yolo_model_path`: Specifies the file path to the YOLOv8 model named "best.pt". This model is crucial for identifying animals within images or video streams.
+- `yolo_model_path`: The yolo_model_path parameter denotes the file path to the YOLOv8 model. This model is crucial for identifying animals within images or video streams.
 
 - `url`: Denotes the URL or index related to camera input. The value "0" suggests it represents the index of the camera source, allowing users to specify which camera feed the system should analyze for animal detection.
 
