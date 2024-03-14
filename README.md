@@ -98,13 +98,9 @@ const App = () => {
 export default App;
 ```
 
-# IoT Alarm System
+# IoT Alert System
 
-Wildwatch's IoT Alarm System component integrates various hardware devices to provide timely alerts based on animal detection. This documentation details the setup and functionality of the IoT components, including the LCD display and buzzer, specifically for the ESP32 platform.
-
-## Overview
-
-Wildwatch's IoT Alarm System, implemented on the ESP32 platform, is designed to enhance wildlife monitoring efforts by providing real-time alerts when animals are detected. The system utilizes two main hardware components: an LCD display for visual alerts and a buzzer for audible alerts. These components are integrated into the system to ensure timely notifications to users.
+The alarm system, implemented on the ESP32 platform, is designed to enhance wildlife monitoring efforts by providing real-time alerts when animals are detected. The system utilizes two main hardware components: an LCD display for visual alerts and a buzzer for audible alerts. Below documents details about the setup and functionality of the IoT components, including the LCD display and buzzer, specifically for the ESP32 platform.
 
 ## Hardware Components
 
