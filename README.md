@@ -57,7 +57,7 @@ To run the frontend, follow these steps:
 
 | Name              | Contribution          | Linkedin Profile                              |
 |:-----------------:|:---------------------:|:---------------------------------------------:|
-| **Abhash Rai**    | Team Lead and Backend | [Abhash Rai](https://www.linkedin.com/in/abhash-rai/) |
+| **Abhash Rai**    | Team Lead & Backend | [Abhash Rai](https://www.linkedin.com/in/abhash-rai/) |
 | **Nabin Oli**     | Machine Learning      | [Nabin Oli](https://www.linkedin.com/in/nabinoli/) |
 | **Bishesh Giri**  | Frontend              | [Bishesh Giri](https://www.linkedin.com/in/bisheshgiri/) |
 | **Sudeep Fullel** | IOT                   | [Sudeep Fullel](https://www.linkedin.com/in/sudeepfullel/) |
