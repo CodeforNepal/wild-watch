@@ -1,13 +1,14 @@
 # Wild Watch: Early Animal Detection for Ultimate Protection
-----------------------------------------------------------------------------
 
-Wildwatch is an animal detection and alarm system that uses a custom-trained YOLOv8 model. This model is deployed on a Flask server to ensure efficient processing. The system is paired with a user-friendly React frontend, guaranteeing a smooth and intuitive user experience. Additionally, it seamlessly integrates IoT components like LCD displays and buzzers, enabling timely alerts for proactive measures.
+Wild watch aims to boost safety along Nepal's wildlife habitats bordering human settlements using object detection technique. It spots dangerous animals and alerts authorities or nearby communities for swift action, focusing on areas near national parks, wildlife reserves, and forests.
 
-### By team - **Team Incognito**
->**Overview**
->
->Welcome to Team Incognito's repository for the "Wild Watch" project. Our team has developed a model using YOLO-v5 for early animal detection to prevent human-wildlife conflicts.
-Getting Started
+It uses a custom-trained YOLOv8 model. This model is deployed on a Flask server for processing of live feed, which is then recieved by a react app and an alert system. Alert system seamlessly integrates IoT components like LCD displays and buzzers, enabling timely alerts for proactive measures.
+
+# Prerequisites
+
+- You must have `Python 3` installed on your system.
+- You must have `Git` installed on your system.
+- **(Optional)** You should have `Node.js` (npm) installed on your system (if using development server)
 
 
 # Server
@@ -18,7 +19,16 @@ To run the server, execute the following command:
 python server.py
 ``` 
 
-Certain parameters in the server.py file can be changed to customize the system's behavior:
+Certain parameters in the `config.json` file can be changed to customize the system's behavior:
+```json
+{
+    "yolo_model_path": "best.pt",
+    "url": 0,
+    "scale_factor": 0.5,
+    "confidence_threshold": 0.65,
+    "esp32_api": "http://192.168.23.188/api/animal-detected"
+}
+```
 
 - `yolo_model_path`: The yolo_model_path parameter denotes the file path to the YOLOv8 model. This model is crucial for identifying animals within images or video streams.
 
