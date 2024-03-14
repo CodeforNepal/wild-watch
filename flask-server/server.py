@@ -6,15 +6,17 @@ from parse_config import parse_config_file
 from detector import AnimalDetector
 
 def send_detected_animals_list(animal_names_list):
-    # Define the URL of the endpoint where you want to send the detected animal names
-    endpoint_url = 'http://localhost:5001/save_animals_list'  # Example URL, modify it according to your actual endpoint
+    url = "http://192.168.23.188/api/animal-detected"
+    data = {"animal_names": animal_names_list}
+    headers = {"Content-Type": "application/json"}
 
-    # Send a POST request with the detected animal names as JSON data
-    response = requests.post(endpoint_url, json={'animal_names': animal_names_list})
+    try:
+        response = requests.post(url, json=data, headers=headers)
+        response.raise_for_status()
+        print("Data sent successfully")
+    except requests.exceptions.RequestException as e:
+        print("Error sending data:", e)
 
-    # Check the response status
-    if response.status_code != 200:
-        print("Error occurred while sending detected animal names:", response.text)
 
 def generate_frames(process_every_nth_frame = 10):
 
@@ -41,7 +43,7 @@ def generate_frames(process_every_nth_frame = 10):
                 last_processed_frame = frame
 
                 print(detected_animal_names_list)
-                # send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
+                send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
 
                 ret, jpeg = cv2.imencode('.jpg', last_processed_frame)
                 jpeg_buffer = jpeg.tobytes()
@@ -50,7 +52,7 @@ def generate_frames(process_every_nth_frame = 10):
                 
             else:
                 if last_processed_frame is not None:
-                    # send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
+                    send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
                     ret, jpeg = cv2.imencode('.jpg', last_processed_frame)
                     jpeg_buffer = jpeg.tobytes()
                     yield (b'--frame\r\n'
