@@ -32,9 +32,9 @@ Certain parameters in the `config.json` file can be changed to customize the sys
 
 - `yolo_model_path`: This parameter denotes the file path to a YOLOv8 model; crucial for identifying animals during video streams.
 
-- `url`: Denotes the URL of video feed or physical camera index related to camera input. For example: "0" suggests it represents the index of the camera source.
+- `url`: Denotes the URL of video feed or physical camera index related to camera input. For example: "0" suggests it represents the default camera source.
 
-- `scale_factor`: Determines the scaling factor applied to input images before processing by the detection model.Input images are resized to half of their original dimensions, impacting processing speed and detection accuracy.
+- `scale_factor`: Determines the scaling factor applied to input images before inferencing by the model. For example: value of 0.5 means 50% of the orignal input width and height will be used to feed to the model.
 
 - `confidence_threshold`: Sets the minimum confidence level required for object detection predictions to be considered valid. A threshold means predictions must have a confidence score of threshold or higher to be accepted.
 
@@ -98,20 +98,6 @@ const App = () => {
 export default App;
 ```
 
-
-# Contributors
-
-| Name              | Contribution          | Linkedin Profile                              |
-|:-----------------:|:---------------------:|:---------------------------------------------:|
-| **Abhash Rai**    | Team Lead & Backend | [Abhash Rai](https://www.linkedin.com/in/abhash-rai/) |
-| **Nabin Oli**     | Machine Learning      | [Nabin Oli](https://www.linkedin.com/in/nabinoli/) |
-| **Bishesh Giri**  | Frontend              | [Bishesh Giri](https://www.linkedin.com/in/bisheshgiri/) |
-| **Sudeep Fullel** | IOT                   | [Sudeep Fullel](https://www.linkedin.com/in/sudeepfullel/) |
-| **Sanket Shrestha** | Documentation       | [Sanket Shrestha](https://www.linkedin.com/in/sanketstha/) |
-| **Shankar Tamang**  | Documentation       | [Shankar Tamang](https://www.linkedin.com/in/shankartamang/) |
-
-<br>
-
 # IoT Alarm System
 
 Wildwatch's IoT Alarm System component integrates various hardware devices to provide timely alerts based on animal detection. This documentation details the setup and functionality of the IoT components, including the LCD display and buzzer, specifically for the ESP32 platform.
@@ -124,19 +110,16 @@ Wildwatch's IoT Alarm System, implemented on the ESP32 platform, is designed to 
 
 1. **ESP32 Microcontroller**: The ESP32 microcontroller serves as the central processing unit for the IoT Alarm System. It manages the communication with other hardware components, such as the LCD display and buzzer, and handles the logic for animal detection and alert generation.
 
-   ![Esp32 Image](IoT/Documentation/Esp32.png)
-   _Esp32 Diagram_
+   <div><img width="30%" src='IoT/Documentation/Esp32.png' alt='Esp32 Image'></div>
+   
+3. **LCD Display (16x2)**: The 16x2 I2C LCD display is used to provide visual alerts to users. It displays messages such as "No Animal Detected," "Single Animal Detected," or "Multiple Animals Detected" based on the detection results. The display ensures that users can quickly and easily understand the current status of animal activity.
 
-2. **LCD Display (16x2)**: The 16x2 I2C LCD display is used to provide visual alerts to users. It displays messages such as "No Animal Detected," "Single Animal Detected," or "Multiple Animals Detected" based on the detection results. The display ensures that users can quickly and easily understand the current status of animal activity.
+   <div><img width="30%" src='IoT/Documentation/lcd-display.png' alt='LCD Display Wiring Diagram'></div>
+   
+5. **Buzzer**: The buzzer is employed to provide audible alerts when animals are detected. It emits a sound to alert users of potential wildlife activity, ensuring that alerts are not missed even in noisy environments or when users are not directly monitoring the system.
 
-   ![LCD Display Wiring Diagram](IoT/Documentation/lcd-display.png)
-   _LCD Display Wiring Diagram_
-
-3. **Buzzer**: The buzzer is employed to provide audible alerts when animals are detected. It emits a sound to alert users of potential wildlife activity, ensuring that alerts are not missed even in noisy environments or when users are not directly monitoring the system.
-
-   ![Buzzer Diagram](IoT/Documentation/Piezoelectric-Buzzer.webp)
-   _Buzzer Diagram_
-
+   <div><img width="30%" src='IoT/Documentation/Piezoelectric-Buzzer.webp' alt='Buzzer Diagram'></div>
+   
 ## Hardware Setup
 
 1. **ESP32 Setup**:
@@ -329,6 +312,16 @@ void loop()
         lastDisplayUpdateTime = millis();
     }
 }
-
-
 ```
+
+
+# Contributors
+
+| Name              | Contribution          | Linkedin Profile                              |
+|:-----------------:|:---------------------:|:---------------------------------------------:|
+| **Abhash Rai**    | Team Lead & Backend | [Abhash Rai](https://www.linkedin.com/in/abhash-rai/) |
+| **Nabin Oli**     | Machine Learning      | [Nabin Oli](https://www.linkedin.com/in/nabinoli/) |
+| **Bishesh Giri**  | Frontend              | [Bishesh Giri](https://www.linkedin.com/in/bisheshgiri/) |
+| **Sudeep Fullel** | IOT                   | [Sudeep Fullel](https://www.linkedin.com/in/sudeepfullel/) |
+| **Sanket Shrestha** | Documentation       | [Sanket Shrestha](https://www.linkedin.com/in/sanketstha/) |
+| **Shankar Tamang**  | Documentation       | [Shankar Tamang](https://www.linkedin.com/in/shankartamang/) |
