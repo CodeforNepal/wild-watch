@@ -30,5 +30,73 @@ Certain parameters in the server.py file can be changed to customize the system'
 
 - `esp32_api`: Specifies the endpoint of an API hosted on an ESP32 device. This API is further used for an alarm system, facilitating communication between the detection system and downstream processes for further proactive measures.
 
+# Frontend
 
+To run the frontend, follow these steps:
+
+1. Ensure that the server is running. If not, follow the instructions in the previous section to start the server.
+
+2. Navigate to the frontend directory in your terminal:
+    ``` 
+    cd path_to_your_front_end_directory
+    ```
+3. Install dependencies by running:
+   ``` 
+   npm install
+   ```
+4. Once the dependencies are installed, start the frontend application with:
+   ``` 
+   npm start
+   ```
+5. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to view the frontend interface.
+6. You can now see the video feed and output sections to observe animal detection results.
+7. Additionally the team member details are provided
+
+## VideoStream Component
+
+The `VideoStream` component is responsible for displaying the video feed and output data from the backend server. It communicates with the server to fetch the video feed and real-time output data using HTTP requests.
+
+### How It Works
+
+1. **Video Feed**: The component requests the video feed from the backend server using an HTTP GET request to `http://localhost:5000/video_feed`. The video feed is then displayed using an `<img>` tag with the appropriate source URL.
+
+2. **Output Data**: The component fetches real-time output data from the backend server using an asynchronous `fetch` request to `http://localhost:5000/output_data`. This data contains information about detected animals. The component periodically fetches new data every 5 seconds.
+
+## Ports and Endpoints
+
+Ensure that the backend server is running on port 5000 for the component to fetch the video feed and output data. The following ports and endpoints are used:
+
+- **Video Feed**: `http://localhost:5000/video_feed`
+- **Output Data**: `http://localhost:5000/output_data`
+
+## Usage
+
+To integrate the `VideoStream` component into your frontend application, simply import it and include it in your component hierarchy. You can customize the appearance and behavior of the component as needed.
+
+```jsx
+import React from "react";
+import VideoStream from "./components/VideoStream";
+
+const App = () => {
+  return (
+    <div className="App">
+      <VideoStream />
+    </div>
+  );
+};
+
+export default App;
+```
+
+
+# Contributors
+
+| Name              | Contribution          | Linkedin Profile                              |
+|:-----------------:|:---------------------:|:---------------------------------------------:|
+| **Abhash Rai**    | Team Lead & Backend | [Abhash Rai](https://www.linkedin.com/in/abhash-rai/) |
+| **Nabin Oli**     | Machine Learning      | [Nabin Oli](https://www.linkedin.com/in/nabinoli/) |
+| **Bishesh Giri**  | Frontend              | [Bishesh Giri](https://www.linkedin.com/in/bisheshgiri/) |
+| **Sudeep Fullel** | IOT                   | [Sudeep Fullel](https://www.linkedin.com/in/sudeepfullel/) |
+| **Sanket Shrestha** | Documentation       | [Sanket Shrestha](https://www.linkedin.com/in/sanketstha/) |
+| **Shankar Tamang**  | Documentation       | [Shankar Tamang](https://www.linkedin.com/in/shankartamang/) |
 
