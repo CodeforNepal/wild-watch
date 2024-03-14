@@ -30,9 +30,9 @@ Certain parameters in the `config.json` file can be changed to customize the sys
 }
 ```
 
-- `yolo_model_path`: The yolo_model_path parameter denotes the file path to the YOLOv8 model. This model is crucial for identifying animals within images or video streams.
+- `yolo_model_path`: This parameter denotes the file path to a YOLOv8 model; crucial for identifying animals during video streams.
 
-- `url`: Denotes the URL or index related to camera input. The value "0" suggests it represents the index of the camera source, allowing users to specify which camera feed the system should analyze for animal detection.
+- `url`: Denotes the URL of video feed or physical camera index related to camera input. For example: "0" suggests it represents the index of the camera source.
 
 - `scale_factor`: Determines the scaling factor applied to input images before processing by the detection model.Input images are resized to half of their original dimensions, impacting processing speed and detection accuracy.
 
