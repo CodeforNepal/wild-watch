@@ -6,8 +6,10 @@ from flask import Flask, render_template, Response
 from parse_config import parse_config_file
 from detector import AnimalDetector
 
+config_file_path = './config.json'
+
 def send_detected_animals_list(animal_names_list):
-    url = "http://192.168.23.188/api/animal-detected"
+    _, _, _, _, url = parse_config_file(config_file_path)
     data = {"animal_names": animal_names_list}
     headers = {"Content-Type": "application/json"}
 
@@ -21,8 +23,8 @@ def send_detected_animals_list(animal_names_list):
 
 def generate_frames(process_every_nth_frame = 10):
 
-    yolo_model_path, url, scale_factor, confidence_threshold = parse_config_file('./config.json')
-    print(url)
+    yolo_model_path, url, scale_factor, confidence_threshold, esp32_api = parse_config_file(config_file_path)
+    
     wild_watch = AnimalDetector(
         yolo_model_path=yolo_model_path,
         url = url,
