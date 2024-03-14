@@ -52,6 +52,42 @@ To run the frontend, follow these steps:
 6. You can now see the video feed and output sections to observe animal detection results.
 7. Additionally the team member details are provided
 
+## VideoStream Component
+
+The `VideoStream` component is responsible for displaying the video feed and output data from the backend server. It communicates with the server to fetch the video feed and real-time output data using HTTP requests.
+
+### How It Works
+
+1. **Video Feed**: The component requests the video feed from the backend server using an HTTP GET request to `http://localhost:5000/video_feed`. The video feed is then displayed using an `<img>` tag with the appropriate source URL.
+
+2. **Output Data**: The component fetches real-time output data from the backend server using an asynchronous `fetch` request to `http://localhost:5000/output_data`. This data contains information about detected animals. The component periodically fetches new data every 5 seconds.
+
+## Ports and Endpoints
+
+Ensure that the backend server is running on port 5000 for the component to fetch the video feed and output data. The following ports and endpoints are used:
+
+- **Video Feed**: `http://localhost:5000/video_feed`
+- **Output Data**: `http://localhost:5000/output_data`
+
+## Usage
+
+To integrate the `VideoStream` component into your frontend application, simply import it and include it in your component hierarchy. You can customize the appearance and behavior of the component as needed.
+
+```jsx
+import React from "react";
+import VideoStream from "./components/VideoStream";
+
+const App = () => {
+  return (
+    <div className="App">
+      <VideoStream />
+    </div>
+  );
+};
+
+export default App;
+```
+
 
 # Contributors
 
