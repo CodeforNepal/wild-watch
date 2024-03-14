@@ -30,5 +30,27 @@ Certain parameters in the server.py file can be changed to customize the system'
 
 - `esp32_api`: Specifies the endpoint of an API hosted on an ESP32 device. This API is further used for an alarm system, facilitating communication between the detection system and downstream processes for further proactive measures.
 
+# Frontend
+
+To run the frontend, follow these steps:
+
+1. Ensure that the server is running. If not, follow the instructions in the previous section to start the server.
+
+2. Navigate to the frontend directory in your terminal:
+    ``` 
+    cd path_to_your_front_end_directory
+    ```
+3. Install dependencies by running:
+   ``` 
+   npm install
+   ```
+4. Once the dependencies are installed, start the frontend application with:
+   ``` 
+   npm start
+   ```
+5. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to view the frontend interface.
+6. You can now see the video feed and output sections to observe animal detection results.
+7. Additionally the team member details are provided
+
 
 
