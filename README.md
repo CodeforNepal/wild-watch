@@ -53,4 +53,14 @@ To run the frontend, follow these steps:
 7. Additionally the team member details are provided
 
 
+# Contributors
+
+| Name              | Contribution          | Linkedin Profile                              |
+|:-----------------:|:---------------------:|:---------------------------------------------:|
+| **Abhash Rai**    | Team Lead and Backend | [Abhash Rai](https://www.linkedin.com/in/abhash-rai/) |
+| **Nabin Oli**     | Machine Learning      | [Nabin Oli](https://www.linkedin.com/in/nabinoli/) |
+| **Bishesh Giri**  | Frontend              | [Bishesh Giri](https://www.linkedin.com/in/bisheshgiri/) |
+| **Sudeep Fullel** | IOT                   | [Sudeep Fullel](https://www.linkedin.com/in/sudeepfullel/) |
+| **Sanket Shrestha** | Documentation       | [Sanket Shrestha](https://www.linkedin.com/in/sanketstha/) |
+| **Shankar Tamang**  | Documentation       | [Shankar Tamang](https://www.linkedin.com/in/shankartamang/) |
 
