@@ -1,5 +1,6 @@
 import requests
 import cv2
+import json
 from flask import Flask, render_template, Response
 
 from parse_config import parse_config_file
@@ -41,20 +42,24 @@ def generate_frames(process_every_nth_frame = 10):
                 last_processed_frame = frame
 
                 print(detected_animal_names_list)
+                animal_names_json = json.dumps(detected_animal_names_list)
                 # send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
 
                 ret, jpeg = cv2.imencode('.jpg', last_processed_frame)
                 jpeg_buffer = jpeg.tobytes()
                 yield (b'--frame\r\n'
-                       b'Content-Type: image/jpeg\r\n\r\n' + jpeg_buffer + b'\r\n\r\n')
+                       b'Content-Type: image/jpeg\r\n\r\n' + jpeg_buffer + b'\r\n\r\n'
+                       b'animal_names: ' + animal_names_json.encode() + b'\r\n\r\n')
                 
             else:
                 if last_processed_frame is not None:
                     # send_detected_animals_list(detected_animal_names_list) # Send the detected animal names list to another endpoint
+                    animal_names_json = json.dumps(detected_animal_names_list)
                     ret, jpeg = cv2.imencode('.jpg', last_processed_frame)
                     jpeg_buffer = jpeg.tobytes()
                     yield (b'--frame\r\n'
-                           b'Content-Type: image/jpeg\r\n\r\n' + jpeg_buffer + b'\r\n\r\n')
+                            b'Content-Type: image/jpeg\r\n\r\n' + jpeg_buffer + b'\r\n\r\n'
+                            b'animal_names: ' + animal_names_json.encode() + b'\r\n\r\n')
     except Exception as e:
         print(e)
         wild_watch.release()
