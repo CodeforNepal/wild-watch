@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.drag-active {
+    border: 2px dashed #2188ff;
+    background-color: #f0faff;
+  }
+
+  /* Add these styles to your CSS or SCSS file */
+.dropzone-container {
+  margin: 20px 0;
+  padding: 20px;
+  border: 2px dashed #2188ff;
+  background-color: #f0faff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropzone-container.active {
+  background-color: #e6f7ff; /* Change color when active */
+}
+
+.dropzone-text {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.dropzone-icon {
+  font-size: 40px;
+  color: #2188ff;
+}
+
+.dropzone-input {
+  display: none; /* Hide the default input */
+}
+
+/* Red background class */
+.red-background {
+  background-color: red;
+}
+
+/* Blink animation class */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+}
