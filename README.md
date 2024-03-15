@@ -6,6 +6,16 @@ It uses a custom-trained YOLOv8 model. This model is deployed on a Flask server 
 
 <br>
 
+# Content
+
+- [Prerequisites](#prerequisites)
+- [Server](#server)
+- [Frontend](#frontend)
+- [Alert System](#alert-system)
+- [Contributors](#contributors)
+
+<br>
+
 # Prerequisites
 
 - You must have `Python 3` installed on your system.
@@ -82,7 +92,7 @@ Ensure that the backend server is running on port 5000 for the component to fetc
 
 <br>
 
-# IoT Alert System
+# Alert System
 
 The alarm system, implemented on the ESP32 platform, is designed to enhance wildlife monitoring efforts by providing real-time alerts when animals are detected. The system utilizes two main hardware components: an LCD display for visual alerts and a buzzer for audible alerts. Below documents details about the setup and functionality of the IoT components, including the LCD display and buzzer, specifically for the ESP32 platform.
 
