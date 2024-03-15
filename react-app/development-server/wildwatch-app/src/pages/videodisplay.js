@@ -13,7 +13,7 @@ const VideoStream = () => {
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch("http://localhost:5000/output_data");
+        const response = await fetch("http://172.16.19.42:5000/output_data");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -70,7 +70,7 @@ const VideoStream = () => {
           ) : (
             <>
               <img
-                src={`http://localhost:5000/video_feed`}
+                src={`http://172.16.19.42:5000/video_feed`}
                 alt="Video"
                 className="w-full h-auto rounded-md shadow-md"
               />

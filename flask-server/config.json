@@ -2,6 +2,6 @@
     "yolo_model_path": "best.pt",
     "url": 0,
     "scale_factor": 0.5,
-    "confidence_threshold": 0.65,
-    "esp32_api": "http://192.168.23.188/api/animal-detected"
+    "confidence_threshold": 0.86,
+    "esp32_api": "http://172.16.19.22/api/animal-detected"
 }
