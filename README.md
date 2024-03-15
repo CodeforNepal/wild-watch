@@ -77,26 +77,7 @@ The `VideoStream` component is responsible for displaying the video feed and out
 Ensure that the backend server is running on port 5000 for the component to fetch the video feed and output data. The following ports and endpoints are used:
 
 - **Video Feed**: `http://localhost:5000/video_feed`
-- **Output Data**: `http://localhost:5000/output_data`
-
-## Usage
-
-To integrate the `VideoStream` component into your frontend application, simply import it and include it in your component hierarchy. You can customize the appearance and behavior of the component as needed.
-
-```jsx
-import React from "react";
-import VideoStream from "./components/VideoStream";
-
-const App = () => {
-  return (
-    <div className="App">
-      <VideoStream />
-    </div>
-  );
-};
-
-export default App;
-```
+- **Output list of detected animals**: `http://localhost:5000/output_data`
 
 # IoT Alert System
 
@@ -104,17 +85,11 @@ The alarm system, implemented on the ESP32 platform, is designed to enhance wild
 
 ## Hardware Components
 
-1. **ESP32 Microcontroller**: The ESP32 microcontroller serves as the central processing unit for the IoT Alarm System. It manages the communication with other hardware components, such as the LCD display and buzzer, and handles the logic for animal detection and alert generation.
-
-   <div><img width="30%" src='IoT/Documentation/Esp32.png' alt='Esp32 Image'></div>
+1. **ESP32 Microcontroller**: The ESP32 microcontroller serves as the central processing unit for the IoT alarm system. Itreceives input from the server and manages the communication with other hardware components, ensuring alerting when required.
    
-3. **LCD Display (16x2)**: The 16x2 I2C LCD display is used to provide visual alerts to users. It displays messages such as "No Animal Detected," "Single Animal Detected," or "Multiple Animals Detected" based on the detection results. The display ensures that users can quickly and easily understand the current status of animal activity.
-
-   <div><img width="30%" src='IoT/Documentation/lcd-display.png' alt='LCD Display Wiring Diagram'></div>
+3. **LCD Display (16x2)**: The 16x2 I2C LCD display is used to provide visual alerts to users. It displays messages such as "No Animal Detected," "Single Animal Detected," or "Multiple Animals Detected" based on the detection results.
    
-5. **Buzzer**: The buzzer is employed to provide audible alerts when animals are detected. It emits a sound to alert users of potential wildlife activity, ensuring that alerts are not missed even in noisy environments or when users are not directly monitoring the system.
-
-   <div><img width="30%" src='IoT/Documentation/Piezoelectric-Buzzer.webp' alt='Buzzer Diagram'></div>
+5. **Buzzer**: The buzzer is employed to provide audible alerts when animals are detected. It emits a sound to alert users of potential wildlife activity, ensuring that alerts are not missed even in noisy environments.
    
 ## Hardware Setup
 
@@ -155,160 +130,9 @@ The alarm system, implemented on the ESP32 platform, is designed to enhance wild
 
 ## Code Snippets
 
-### Python(Function) Script for server (test_iot_server.py)
+- [Esp32_server.c++](IoT/Esp32_server.c++): contains the script used in esp32 of the alarm system
 
-```python
-import requests
-import json
-
-def send_animal_data(animal_names_list):
-    url = "http://192.168.23.188/api/animal-detected"
-    data = {"animal_names": animal_names_list}
-    headers = {"Content-Type": "application/json"}
-
-    try:
-        response = requests.post(url, json=data, headers=headers)
-        response.raise_for_status()
-        print("Data sent successfully")
-    except requests.exceptions.RequestException as e:
-        print("Error sending data:", e)
-
-# Example usage:
-animal_names_list = ["Abhash"]
-send_animal_data(animal_names_list)
-
-```
-
-### Esp32Script for server (Esp32_server.py)
-
-```C++
-#include <WiFi.h>
-#include <WebServer.h>
-#include <Wire.h>
-#include <ArduinoJson.h>
-#include <LiquidCrystal_I2C.h>
-
-const char *ssid = "Sunway_304";
-const char *password = "sunway@123";
-
-WebServer server(80);
-
-const int buzzerPin = 13;
-const unsigned long buzzerDuration = 5000;
-const unsigned long displayResetDuration = 7000;
-unsigned long lastBuzzerTime = 0;
-unsigned long lastDisplayUpdateTime = 0;
-
-LiquidCrystal_I2C lcd(0x27, 16, 2);
-
-void handleAnimalDetection()
-{
-    if (server.method() == HTTP_POST)
-    {
-        String receivedData = server.arg("plain");
-        Serial.print("Received data: ");
-        Serial.println(receivedData);
-
-        StaticJsonDocument<200> doc;
-        DeserializationError error = deserializeJson(doc, receivedData);
-
-        if (error)
-        {
-            Serial.print("JSON parsing error: ");
-            Serial.println(error.c_str());
-            return;
-        }
-
-        JsonArray animalNames = doc["animal_names"];
-
-        if (animalNames.size() == 0)
-        {
-            digitalWrite(buzzerPin, LOW);
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print("No Animal Detected");
-        }
-        else if (animalNames.size() == 1)
-        {
-            digitalWrite(buzzerPin, HIGH);
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print(animalNames[0].as<String>() + " Detected");
-            lastBuzzerTime = millis();
-        }
-        else
-        {
-            digitalWrite(buzzerPin, HIGH);
-            lcd.clear();
-            lcd.setCursor(0, 0);
-            lcd.print("Multiple Animals Detected");
-            lastBuzzerTime = millis();
-        }
-
-        lastDisplayUpdateTime = millis();
-
-        server.sendHeader("Access-Control-Allow-Origin", "*");
-        server.sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        server.sendHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-        server.send(200, "text/plain", "Data received successfully");
-    }
-    else
-    {
-        server.send(405, "text/plain", "Method Not Allowed");
-    }
-}
-
-void handleOptions()
-{
-    server.sendHeader("Access-Control-Allow-Origin", "*");
-    server.sendHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    server.sendHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    server.send(200);
-}
-
-void setup()
-{
-    Serial.begin(115200);
-    pinMode(buzzerPin, OUTPUT);
-    lcd.init();
-    lcd.backlight();
-
-    WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(1000);
-        Serial.println("Connecting to WiFi...");
-    }
-    Serial.println("Connected to WiFi");
-    Serial.print("IP Address: ");
-    Serial.println(WiFi.localIP());
-
-    server.on("/api/animal-detected", HTTP_POST, handleAnimalDetection);
-    server.on("/api/animal-detected", HTTP_OPTIONS, handleOptions);
-
-    server.begin();
-    Serial.println("HTTP server started");
-}
-
-void loop()
-{
-    server.handleClient();
-
-    if (millis() - lastBuzzerTime >= buzzerDuration)
-    {
-        digitalWrite(buzzerPin, LOW);
-    }
-
-    if (millis() - lastDisplayUpdateTime >= displayResetDuration)
-    {
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("Alert System");
-        lastDisplayUpdateTime = millis();
-    }
-}
-```
+- [test_iot_server.py](IoT/test_iot_server.py): contains the testing script used to send signal to the alaram system to activate alarming
 
 
 # Contributors
