@@ -4,12 +4,15 @@ Wild watch aims to boost safety along Nepal's wildlife habitats bordering human 
 
 It uses a custom-trained YOLOv8 model. This model is deployed on a Flask server for processing of live feed, which is then recieved by a react app and an alert system. Alert system seamlessly integrates IoT components like LCD displays and buzzers, enabling timely alerts for proactive measures.
 
+<br>
+
 # Prerequisites
 
 - You must have `Python 3` installed on your system.
 - You must have `Git` installed on your system.
 - **(Optional)** You should have `Node.js` (npm) installed on your system (if using development server)
 
+<br>
 
 # Server
 
@@ -40,6 +43,8 @@ Certain parameters in the `config.json` file can be changed to customize the sys
 
 - `esp32_api`: Specifies the endpoint of an API hosted on an ESP32 device. This API is further used for an alarm system, facilitating communication between the detection system and downstream processes for further proactive measures.
 
+<br>
+
 # Frontend
 
 To run the frontend, follow these steps:
@@ -48,7 +53,7 @@ To run the frontend, follow these steps:
 
 2. Navigate to the frontend directory in your terminal:
    ```
-   cd path_to_your_front_end_directory
+   cd wild-watch/react-app/development-server/wildwatch-app
    ```
 3. Install dependencies by running:
    ```
@@ -58,15 +63,11 @@ To run the frontend, follow these steps:
    ```
    npm start
    ```
-5. Open your web browser and visit [http://localhost:3000](http://localhost:3000) to view the frontend interface.
-6. You can now see the video feed and output sections to observe animal detection results.
-7. Additionally the team member details are provided
+5. Open your web browser and enter `http://localhost:3000`.
 
-## VideoStream Component
+## Video Stream
 
 The `VideoStream` component is responsible for displaying the video feed and output data from the backend server. It communicates with the server to fetch the video feed and real-time output data using HTTP requests.
-
-### How It Works
 
 1. **Video Feed**: The component requests the video feed from the backend server using an HTTP GET request to `http://localhost:5000/video_feed`. The video feed is then displayed using an `<img>` tag with the appropriate source URL.
 
@@ -79,17 +80,19 @@ Ensure that the backend server is running on port 5000 for the component to fetc
 - **Video Feed**: `http://localhost:5000/video_feed`
 - **Output list of detected animals**: `http://localhost:5000/output_data`
 
+<br>
+
 # IoT Alert System
 
 The alarm system, implemented on the ESP32 platform, is designed to enhance wildlife monitoring efforts by providing real-time alerts when animals are detected. The system utilizes two main hardware components: an LCD display for visual alerts and a buzzer for audible alerts. Below documents details about the setup and functionality of the IoT components, including the LCD display and buzzer, specifically for the ESP32 platform.
 
 ## Hardware Components
 
-1. **ESP32 Microcontroller**: The ESP32 microcontroller serves as the central processing unit for the IoT alarm system. Itreceives input from the server and manages the communication with other hardware components, ensuring alerting when required.
+1. `ESP32 Microcontroller`: The ESP32 microcontroller serves as the central processing unit for the IoT alarm system. Itreceives input from the server and manages the communication with other hardware components, ensuring alerting when required.
    
-3. **LCD Display (16x2)**: The 16x2 I2C LCD display is used to provide visual alerts to users. It displays messages such as "No Animal Detected," "Single Animal Detected," or "Multiple Animals Detected" based on the detection results.
+3. `LCD Display (16x2)`: The 16x2 I2C LCD display is used to provide visual alerts to users. It displays messages such as "No Animal Detected," "Single Animal Detected," or "Multiple Animals Detected" based on the detection results.
    
-5. **Buzzer**: The buzzer is employed to provide audible alerts when animals are detected. It emits a sound to alert users of potential wildlife activity, ensuring that alerts are not missed even in noisy environments.
+5. `Buzzer`: The buzzer is employed to provide audible alerts when animals are detected. It emits a sound to alert users of potential wildlife activity, ensuring that alerts are not missed even in noisy environments.
    
 ## Hardware Setup
 
@@ -134,6 +137,8 @@ The alarm system, implemented on the ESP32 platform, is designed to enhance wild
 
 - [test_iot_server.py](IoT/test_iot_server.py): contains the testing script used to send signal to the alaram system to activate alarming
 
+
+<br>
 
 # Contributors
 
