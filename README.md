@@ -1,5 +1,7 @@
 # Wild Watch: Early Animal Detection for Ultimate Protection
 
+![demo](https://github.com/abhash-rai/wild-watch/assets/106548397/c6b3ae69-bbe5-409f-ad2d-2e3170d809e0)
+
 Wild watch aims to boost safety along Nepal's wildlife habitats bordering human settlements using object detection technique. It spots dangerous animals and alerts authorities or nearby communities for swift action, focusing on areas near national parks, wildlife reserves, and forests.
 
 It uses a custom-trained YOLOv8 model. This model is deployed on a Flask server for processing of live feed, which is then recieved by a react app and an alert system. Alert system seamlessly integrates IoT components like LCD displays and buzzers, enabling timely alerts for proactive measures.
@@ -53,11 +55,18 @@ Certain parameters in the `config.json` file can be changed to customize the sys
 
 - `esp32_api`: Specifies the endpoint of an API hosted on an ESP32 device. This API is further used for an alarm system, facilitating communication between the detection system and downstream processes for further proactive measures.
 
+## Ports and Endpoints
+
+Ensure that the backend server is running on port 5000 for the component to fetch the video feed and output data. The following ports and endpoints can be used to fetch data:
+
+- **Video Feed**: `http://localhost:5000/video_feed`
+- **Output list of detected animals**: `http://localhost:5000/output_data`
+
 <br>
 
 # Frontend
 
-To run the frontend, follow these steps:
+The video feed and output data from the backend server are displayed in a react app. It communicates with the server to fetch the video feed and real-time output data using HTTP requests. To run the frontend, follow these steps:
 
 1. Ensure that the server is running. If not, follow the instructions in the previous section to start the server.
 
@@ -74,21 +83,6 @@ To run the frontend, follow these steps:
    npm start
    ```
 5. Open your web browser and enter `http://localhost:3000`.
-
-## Video Stream
-
-The `VideoStream` component is responsible for displaying the video feed and output data from the backend server. It communicates with the server to fetch the video feed and real-time output data using HTTP requests.
-
-1. **Video Feed**: The component requests the video feed from the backend server using an HTTP GET request to `http://localhost:5000/video_feed`. The video feed is then displayed using an `<img>` tag with the appropriate source URL.
-
-2. **Output Data**: The component fetches real-time output data from the backend server using an asynchronous `fetch` request to `http://localhost:5000/output_data`. This data contains information about detected animals. The component periodically fetches new data every 5 seconds.
-
-## Ports and Endpoints
-
-Ensure that the backend server is running on port 5000 for the component to fetch the video feed and output data. The following ports and endpoints are used:
-
-- **Video Feed**: `http://localhost:5000/video_feed`
-- **Output list of detected animals**: `http://localhost:5000/output_data`
 
 <br>
 
