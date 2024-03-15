@@ -11,6 +11,7 @@ It uses a custom-trained YOLOv8 model. This model is deployed on a Flask server 
 # Content
 
 - [Prerequisites](#prerequisites)
+- [Yolo model](#yolo-model)
 - [Server](#server)
 - [Frontend](#frontend)
 - [Alert System](#alert-system)
@@ -23,6 +24,13 @@ It uses a custom-trained YOLOv8 model. This model is deployed on a Flask server 
 - You must have `Python 3` installed on your system.
 - You must have `Git` installed on your system.
 - **(Optional)** You should have `Node.js` (npm) installed on your system (if using development server)
+
+<br>
+
+# Yolo model
+
+- Data was collected, augmented and annotated. You can find it here: ![https://drive.google.com/drive/folders/1m8P8-fzJ1uP6EHWUPU4veKx_WV0CSM4I?usp=sharing](https://drive.google.com/drive/folders/1m8P8-fzJ1uP6EHWUPU4veKx_WV0CSM4I?usp=sharing)
+- Yolov8 model architecture was trained on the given data. You can find the model here: ![best.pt](flask-server/best.pt)
 
 <br>
 
