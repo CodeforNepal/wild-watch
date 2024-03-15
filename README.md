@@ -88,6 +88,8 @@ The video feed and output data from the backend server are displayed in a react 
 
 # Alert System
 
+![alar-system](https://github.com/abhash-rai/wild-watch/assets/106548397/0e3b5548-ef95-4de2-baaf-73d05883b6eb)
+
 The alarm system, implemented on the ESP32 platform, is designed to enhance wildlife monitoring efforts by providing real-time alerts when animals are detected. The system utilizes two main hardware components: an LCD display for visual alerts and a buzzer for audible alerts. Below documents details about the setup and functionality of the IoT components, including the LCD display and buzzer, specifically for the ESP32 platform.
 
 ## Hardware Components
